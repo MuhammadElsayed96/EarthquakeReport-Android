@@ -30,13 +30,13 @@ public class EarthquakeLoader extends AsyncTaskLoader<List<Earthquake>> {
 
     @Override
     protected void onStartLoading() {
-        Log.e(LOG_TAG, "onStartLoading method has been triggered.");
+        Log.e(LOG_TAG, "TEST: onStartLoading method has been triggered.");
         forceLoad();
     }
 
     @Override
     public List<Earthquake> loadInBackground() {
-        Log.e(LOG_TAG, "loadInBackground method has been triggered.");
+        Log.e(LOG_TAG, "TEST: loadInBackground method has been triggered.");
         if (url == null) {
             return null;
         }
