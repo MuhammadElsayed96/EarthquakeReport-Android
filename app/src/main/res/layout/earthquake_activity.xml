@@ -36,12 +36,12 @@
 
     <ProgressBar
         android:id="@+id/loading_indicator"
+        style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        style="?android:attr/progressBarStyleLarge"
-        android:visibility="visible"
         android:indeterminate="true"
-        />
+        android:visibility="visible" />
+
 
 </RelativeLayout>
