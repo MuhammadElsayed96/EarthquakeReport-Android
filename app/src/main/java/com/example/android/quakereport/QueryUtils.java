@@ -34,7 +34,9 @@ public class QueryUtils {
     }
 
     public static ArrayList<Earthquake> fetchEarthquakeData(String url) {
-        Log.e(LOG_TAG, "fTEST: etchEarthquakeData method has been triggered.");
+
+        Log.i(LOG_TAG, "fTEST: etchEarthquakeData method has been triggered.");
+
         String jsonResponse = "";
 
         //  create URL object

@@ -25,6 +25,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,14 +39,19 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
 
     private EarthquakeAdapter adapter;
     private static final int EARTHQUAKE_LOADER_ID = 1;
+    private TextView emptyStateTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.earthquake_activity);
-        Log.v(LOG_TAG, "TEST: onCreate method has been triggered");
+
+        Log.i(LOG_TAG, "TEST: onCreate method has been triggered");
+
+
         // Find a reference to the {@link ListView} in the layout
         ListView earthquakeListView = (ListView) findViewById(R.id.list);
+
 
         // Create a new {@link ArrayAdapter} of earthquakes
         adapter = new EarthquakeAdapter(this, new ArrayList<Earthquake>());
@@ -52,6 +59,10 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
         // Set the adapter on the {@link ListView}
         // so the list can be populated in the user interface
         earthquakeListView.setAdapter(adapter);
+        emptyStateTextView = (TextView) findViewById(R.id.empty_state);
+        earthquakeListView.setEmptyView(emptyStateTextView);
+        emptyStateTextView.setText(R.string.show_nothing);
+
 
         earthquakeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -67,14 +78,16 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
         LoaderManager loaderManager = getLoaderManager();
 
         // Start the loader or create it to fetch the earthquake data.
+        Log.i(LOG_TAG, "TEST: loaderManager.initLoader method has been triggered");
         loaderManager.initLoader(EARTHQUAKE_LOADER_ID, null, this);
-        Log.e(LOG_TAG, "TEST: loaderManager.initLoader method has been triggered");
     }
 
 
     @Override
     public Loader<List<Earthquake>> onCreateLoader(int i, Bundle bundle) {
-        Log.e(LOG_TAG, "TEST: onCreateLoader method has been triggered");
+
+        Log.i(LOG_TAG, "TEST: onCreateLoader method has been triggered");
+
         // Create a new loader for the given URL
         return new EarthquakeLoader(this, USGS_REQUEST_URL);
     }
@@ -82,19 +95,30 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
     //update the UI with the list of earthquakes.
     @Override
     public void onLoadFinished(Loader<List<Earthquake>> loader, List<Earthquake> earthquakes) {
-        Log.e(LOG_TAG, "TEST: onLoadFinished method has been triggered");
+        // Hide loading indicator because the data has been loaded
+        ProgressBar progressBar = (ProgressBar) findViewById(R.id.loading_indicator);
+        progressBar.setVisibility(View.GONE);
+
+        // Set empty state text to display "No earthquakes found."
+        emptyStateTextView.setText(R.string.no_earthquakes);
+
+        Log.i(LOG_TAG, "TEST: onLoadFinished method has been triggered");
+
         // Clear the adapter of previous earthquake data
         adapter.clear();
 
         // If there is a valid list of earthquakes, then add them to the adapter's
         // data set. This will trigger the ListView to update.
-        if (earthquakes != null || !earthquakes.isEmpty())
+        if (earthquakes != null || !earthquakes.isEmpty()) {
             adapter.addAll(earthquakes);
+        }
     }
 
     @Override
     public void onLoaderReset(Loader<List<Earthquake>> loader) {
-        Log.e(LOG_TAG, "TEST: onLoaderReset method has been triggered");
+
+        Log.i(LOG_TAG, "TEST: onLoaderReset method has been triggered");
+
         //Loader reset, so we can clear out our existing data.
         adapter.clear();
     }
@@ -103,36 +127,37 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
     @Override
     protected void onStart() {
         super.onStart();
-        Log.v(LOG_TAG, "TEST: onStart method has been triggered");
+        Log.i(LOG_TAG, "TEST: onStart method has been triggered");
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.v(LOG_TAG, "TEST: onResume method has been triggered");
+        Log.i(LOG_TAG, "TEST: onResume method has been triggered");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.v(LOG_TAG, "TEST: onPause method has been triggered");
+        Log.i(LOG_TAG, "TEST: onPause method has been triggered");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.v(LOG_TAG, "TEST: onStop method has been triggered");
+        Log.i(LOG_TAG, "TEST: onStop method has been triggered");
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        Log.v(LOG_TAG, "TEST: onRestart method has been triggered");
+        Log.i(LOG_TAG, "TEST: onRestart method has been triggered");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.v(LOG_TAG, "TEST: onDestroy method has been triggered");
+        Log.i(LOG_TAG, "TEST: onDestroy method has been triggered");
     }
 }
