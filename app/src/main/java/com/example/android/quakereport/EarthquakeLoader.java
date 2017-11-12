@@ -2,6 +2,7 @@ package com.example.android.quakereport;
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ import java.util.List;
 
 public class EarthquakeLoader extends AsyncTaskLoader<List<Earthquake>> {
 
-    public static final String LOG_TAG = EarthquakeActivity.class.getName();
+    public static final String LOG_TAG = EarthquakeLoader.class.getName();
     private String url;
 
     // A constructor to create a new EarthquakeLoader instance.
@@ -29,12 +30,13 @@ public class EarthquakeLoader extends AsyncTaskLoader<List<Earthquake>> {
 
     @Override
     protected void onStartLoading() {
+        Log.e(LOG_TAG, "onStartLoading method has been triggered.");
         forceLoad();
     }
 
     @Override
     public List<Earthquake> loadInBackground() {
-
+        Log.e(LOG_TAG, "loadInBackground method has been triggered.");
         if (url == null) {
             return null;
         }
