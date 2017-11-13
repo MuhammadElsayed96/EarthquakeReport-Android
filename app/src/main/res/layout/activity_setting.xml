@@ -14,13 +14,10 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-
-<!-- Background circle for the magnitude value -->
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="oval">
-    <solid android:color="@color/magnitude1" />
-    <size
-        android:width="36dp"
-        android:height="36dp" />
-    <corners android:radius="18dp" />
-</shape>
+<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:name="com.example.android.quakereport.SettingActivity$EarthquakePreferenceFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.android.quakereport.SettingActivity">
+</fragment>

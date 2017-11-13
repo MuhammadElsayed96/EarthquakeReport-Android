@@ -1,3 +1,18 @@
+/*
+ *  Copyright [2017] [Muhammad Elsayed]
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.example.android.quakereport;
 
 import android.content.Context;
@@ -81,7 +96,7 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
 
     private String formateDate(Date dateObject) {
-        SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM DD, yyyy");
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("LLL dd, yyyy");
         return dateFormatter.format(dateObject);
     }
 
@@ -97,7 +112,7 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
             locationArray[1] = "NEAR THE";
         } else {
             int idx = location.indexOf("of");
-            String primaryLocation = location.substring(idx + 3, location.length() - 1);
+            String primaryLocation = location.substring(idx + 3, location.length());
             String offsetLocation = location.substring(0, idx + 2);
             locationArray[0] = primaryLocation;
             locationArray[1] = offsetLocation;

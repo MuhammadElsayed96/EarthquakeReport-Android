@@ -14,13 +14,14 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
+<resources>
+    <string-array name="settings_order_by_labels">
+        <item>@string/settings_order_by_magnitude_label</item>
+        <item>@string/settings_order_by_most_recent_label</item>
+    </string-array>
 
-<!-- Background circle for the magnitude value -->
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="oval">
-    <solid android:color="@color/magnitude1" />
-    <size
-        android:width="36dp"
-        android:height="36dp" />
-    <corners android:radius="18dp" />
-</shape>
+    <string-array name="settings_order_by_values">
+        <item>@string/settings_order_by_magnitude_value</item>
+        <item>@string/settings_order_by_most_recent_value</item>
+    </string-array>
+</resources>
